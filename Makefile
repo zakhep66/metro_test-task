@@ -18,9 +18,9 @@ app-logs:
 app-down:
 	${DC} -f ${APP_FILE} -f ${STORAGE_FILE} down
 
-.PHONY: app-bash
-app-bash:
-	${EXEC} ${APP_CONTAINER} bash
+.PHONY: app-sh
+app-sh:
+	${EXEC} ${APP_CONTAINER} sh
 
 .PHONY: app-migrations
 app-migrations:
