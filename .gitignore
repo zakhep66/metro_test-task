@@ -2,3 +2,4 @@
 venv
 .idea
 .env
+docker_compose/postgres_data
