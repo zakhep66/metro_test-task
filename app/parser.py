@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.v1.news.schemas import News
-from app.api.v1.news.services import add_news
+from app.api.v1.news.services import add_news, is_distinct_news
 
 
 async def fetch_news(session):
@@ -34,5 +34,10 @@ async def parse_news(session: AsyncSession):
                 image_url = image_element['src']
                 published_date = date_element.text
 
-                news_data = News(title=title, img_url=image_url, date=datetime.strptime(published_date, '%d.%m.%Y'))
-                await add_news(session, news_data)
+                news_data = News(
+                    title=title,
+                    img_url=image_url,
+                    date=datetime.strptime(published_date, '%d.%m.%Y'))
+
+                if await is_distinct_news(session, news_data):
+                    await add_news(session, news_data)
