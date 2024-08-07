@@ -24,4 +24,4 @@ wait_for_pool() {
 
 wait_for_pool "postgres" "$POSTGRES_PORT"
 
-python -m uvicorn app.main:app --host 0.0.0.0 --port "$APP_PORT"
+python -m uvicorn app.main:app --host 0.0.0.0 --port "$APP_PORT" --reload
