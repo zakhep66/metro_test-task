@@ -16,7 +16,7 @@ async def get_news_by_period(session: AsyncSession, days: int) -> list:
 
 
 async def add_news(session: AsyncSession, news: NewsSchema) -> NewsModel:
-	new = NewsSchema(**news.model_dump())
+	new = NewsModel(**news.model_dump())
 	session.add(new)
 	await session.commit()
 	return new
